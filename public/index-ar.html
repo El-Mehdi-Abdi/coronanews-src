@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>أخبار كورونا بالمغرب</title>
+    <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-firestore.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyACxI1-Pwhugow5W-CcTMnEFsp9hEkYYJs",
+        authDomain: "coronanews-9073c.firebaseapp.com",
+        databaseURL: "https://coronanews-9073c.firebaseio.com",
+        projectId: "coronanews-9073c",
+        storageBucket: "coronanews-9073c.appspot.com",
+        messagingSenderId: "470972808750",
+        appId: "1:470972808750:web:c6c63df0e53c42e7bd69bf",
+        measurementId: "G-9WDTB1QEZY"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+      //var db = firebase.firestore();
+    </script>
+
+
+    <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">    
+    <style type="text/css">
+        html {
+            display: flex;
+            min-height: 100vh;/* or height */
+        }
+        body{
+            direction: rtl;
+            font-family: 'Cairo', sans-serif;
+            border-radius: 10px;
+            background: #ECEFF1;
+            max-width: 720px;
+            margin: auto;
+        }
+        .grid-container {
+            height: 360px;
+            color: gray;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            border-radius: 5px;
+            background-color: white;
+            display: flex;
+            margin: 0;
+        }
+        .menu {
+            width: 130px;
+            box-shadow: -3px 0 3px -3px rgba(0,0,0,0.16);
+        }
+        .menu .tab{
+            text-align: right;
+            display: block;
+            padding: 8px 16px;
+            border: none;
+            white-space: normal;
+            float: none;
+            outline: 0;
+            cursor: pointer;
+        }
+        .menu .tab.active{
+            background-color: #dddddd;
+            color: #373333;
+        }
+        .menu .tab:hover{
+            color: #373333;
+        }
+        .menu .tab:first-child{
+            border-radius: 2px 2px 0px 0px;
+        }
+        .body{ 
+            width: 590px;
+            padding: 8px;
+            text-align: center;
+            display: flex;
+        }
+        .body #statistics{
+            margin: auto;
+        }
+        .body #charts{
+            margin: auto;
+        }
+        .body #charts{
+            margin: auto;
+        }
+        .body #advices{
+            margin: auto;
+        }
+        .body #contact_us{
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <p style="color: #721c24; background-color: #f8d7da; border-color: #f5c6cb; border-radius: 3px;font-size: 12px;padding: 8px; border-radius: 3px;">نحن في مرحلة يجب على الكل ضبط النفس والانخراط في الحد من انتشار فيروس كورونا.</p>
+    <p style="color: #383d41; background-color: #e2e3e5; border-color: #d6d8db; border-radius: 3px;font-size: 12px;padding: 8px; border-radius: 3px;">تم انشاء هذا الموقع بهدف ارشاد الشعب المغربي للمعلومة الصحيحة و ابعاد كل ما يشوش من إشاعات و اكاديب حول انتشار وباء كورونا ، نحن في المرحلة الاولى من هاده المنصة.
+كمطور ويب وللمصلحة العامة  للوطن المغربي شعبا وملكا اساهم بهادا الموقع للجهات المختصة . الاتصال بالبريد الالكتروني  .</p>
+    <div class="grid-container">
+        <div class="menu">
+            <div class="tab statistics active" onclick="openMenu(event, 'statistics')">الاحصائيات</div>
+            <div class="tab charts" onclick="openMenu(event, 'charts')" style="display: none;">رسم تخطيطي</div>
+            <div class="tab advices" onclick="openMenu(event, 'advices')">توجيهات</div>
+            <div class="tab contact_us" onclick="openMenu(event, 'contact_us')">اتصل بنا</div>
+        </div>
+        <div class="body">
+            <div class="window" id="statistics">
+                <p style="margin-top: 0px;">احصائيات فيروس كورونا المغرب (COVID-19)</p>
+                <div class="infected">
+                    <p style="margin: 0px; color: red; font-size: 25px;" class="count">29</p>
+                    <small>حالة مؤكدة</small>
+                </div>
+                <div class="recovered">
+                    <p style="margin: 0px; color: green; font-size: 25px;" class="count">1</p>
+                    <small>تعافى</small>
+                </div>
+                <div class="death">
+                    <p style="margin: 0px; color: gray; font-size: 25px;" class="count">1</p>
+                    <small>وفيات</small>
+                </div>
+            </div>
+            <div class="window" id="charts" style="display: none;">charts</div>
+            <div class="window" id="advices" style="display: none;">
+                <p style="margin-top: 0px;">يمكنك الاطلاع على كل ما يخص فيروس كورونا بالموقع الرسمي لمنضمة الصحة العالمية</p>
+                <a href="https://www.who.int/features/qa/mers-cov/ar/">فيروس كورونا المسبب لمتلازمة الشرق الأوسط التنفسية (فيروس كورونا)</a>
+            </div>
+            <div class="window" id="contact_us" style="display: none;">
+                <p>راسلنا على البريد الالكتروني</p>
+                <h3>contact@coronanews.ma</h3>
+            </div>
+        </div>
+    </div>
+    <p style="text-align: center; font-size: 10px; color: #606060;">Open Source Platform Devloped by Moroccan Citizen. [version 1.0 BETA]</p>
+    <script>
+        //Inits 
+        (function() {
+            //loadStatistics()
+        })();
+        function openMenu(evt, tabName) {
+
+            var i, x, tablinks;
+            x = document.getElementsByClassName("window");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tab");
+            for (i = 0; i < x.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", ""); 
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        function loadStatistics()
+        {
+            db.collection('statistics').where("status", "==", "infected").onSnapshot({ includeMetadataChanges: true }, function(snapshot) {
+                    var recovered = document.querySelectorAll(".infected .count")[0];
+                    //recovered.innerText = snapshot.size
+                });
+
+                db.collection('statistics').where("status", "==", "recovered").onSnapshot({ includeMetadataChanges: true }, function(snapshot) {
+                    var recovered = document.querySelectorAll(".recovered .count")[0];
+                    //recovered.innerText = snapshot.size
+                });
+
+                db.collection('statistics').where("status", "==", "death").onSnapshot({ includeMetadataChanges: true }, function(snapshot) {
+                    var recovered = document.querySelectorAll(".death .count")[0];
+                    //recovered.innerText = snapshot.size
+                });
+
+
+        }
+    </script>
+</body>
+</html>
